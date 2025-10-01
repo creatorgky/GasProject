@@ -3,6 +3,7 @@
 
 #include "PlayerGas.h"
 
+#include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
  // Sets default values
@@ -16,25 +17,31 @@ APlayerGas::APlayerGas()
 	AbilitySystemComponent->SetIsReplicated(true);
 	AbilitySystemComponent->SetReplicationMode(AscReplicationMode);
 
+    GetCapsuleComponent()->InitCapsuleSize(35.0f,90.0f);
+
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationYaw = false;
+	bUseControllerRotationRoll = false;
+    
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 500.0f,0.0f);
 	GetCharacterMovement()->JumpZVelocity = 500.0f;
 	GetCharacterMovement()->AirControl = 0.35f;
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
+	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
+	GetCharacterMovement()->BrakingDecelerationFalling =1500.f;
 }
 
 // Called when the game starts or when spawned
 void APlayerGas::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void APlayerGas::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
