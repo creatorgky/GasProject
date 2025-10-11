@@ -5,6 +5,7 @@
 
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "GasProject1/GameplayAbilitySystem/AttributeSets/BasicAttributeSet.h"
 
  // Sets default values
 APlayerGas::APlayerGas()
@@ -30,6 +31,9 @@ APlayerGas::APlayerGas()
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
 	GetCharacterMovement()->BrakingDecelerationFalling =1500.f;
+
+	//Add the basic attribute set
+	BasicAttributeSet = CreateDefaultSubobject<UBasicAttributeSet>(TEXT("BasicAttributeSet"));
 }
 
 // Called when the game starts or when spawned
